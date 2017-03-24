@@ -1,2 +1,82 @@
-# DWA-vj2017-Kwizzert
-Final assignment for DWA
+# Kwizzert
+
+This README will give you a short summary of the Kwizzert App. We start with a walkthrough into getting this project up and running. Further we will list the requirements, architecture, communication protocol, components, routes and external libraries used.
+
+Kwizzert is a real-time web-app supposed to be used as an party game for groups of people setting up and taking quizzes, a pub quiz.
+
+A more extensive description of the app can be found in Kwizzert Description.pdf [Kwizzert Description.pdf](https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert/blob/master/Kwizzert%20Description.pdf)
+
+### Version
+0.0.0
+
+## Installation
+```
+git clone https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert.git
+npm install
+npm start
+```
+## Requirements
+
+ - There are teams
+ - Team sizes do not matter
+ - Atleast two teams signup but there can be more participating teams
+ - A game consists of multiple rounds and each round has 12 questions
+ - Questions can be selected from 3 categories
+ 
+ - There is a quiz master
+ - quiz master verify's team submissions
+ - can start a game
+ - The quiz master can select the 3 category's for the question of that round
+ - The quiz master verify's wether answers submitted by the participatting teams are valid or not
+ - The quiz master can skip a question
+ - The quiz master can end a game
+ - The quiz master can select the next question
+ 
+ - There is a scoreboard
+ - The scoreboard displays the points of the teams
+ - The scoreboard displays the time left to answer a question
+ - The scoreboard indicates what state the game is in examples: quizz setup, answer submission, answer validation, post game screen
+ - displays the round
+ - displays the question
+ - displays team names and the scores of these teams
+ - displays the amount of correct answers this round
+ - displays category of the question
+ - live updates on verification input of the quiz master
+ - The scoreboard only shows the top three teams and emphasizes the winning team
+ 
+ - The team client is scaled to be used on smartphones
+ - The quiz master client is scaled to be used on tablets
+ - The scoreboard client is scaled to be used on beamers
+ 
+ - The server supports multiple games running simutaniusly
+ 
+ - Every question is only asked once
+ - Team names are unique and required
+ - Teams can edit their answer after submitting it
+ - Empty answers by teams are ignored
+ 
+### Optional Requirements
+ - Questions are time limited
+ - Multiple clients of the same team can connect
+ 
+## Mockups - Bart-Jan
+
+## Architecture - Sven
+
+## Communication Protocol - Sven
+REST
+Websocket
+
+## Components - Bart-Jan
+
+## Routes - Bart-Jan
+
+## External libraries
+Mongoose
+React
+React router
+Websocket
+Redux
+Bootstrap
+
+## Todos
