@@ -70,6 +70,14 @@ Websocket
 ## Components - Bart-Jan
 
 ## Routes - Bart-Jan
+/:gameID/:team
+team ui
+
+/:gameID/master
+quiz master ui
+
+/:gameID/score
+scoreboard ui
 
 ## External libraries
 Mongoose
