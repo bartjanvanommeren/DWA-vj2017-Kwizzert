@@ -19,6 +19,7 @@ npm start
 
  - There are teams
  - Team sizes do not matter
+ - Teams can only join at the beginning of a game
  - Atleast two teams signup but there can be more participating teams
  - A game consists of multiple rounds and each round has 12 questions
  - Questions can be selected from 3 categories
@@ -58,6 +59,7 @@ npm start
 ### Optional Requirements
  - Questions are time limited
  - Multiple clients of the same team can connect
+ - The App keeps a history of played games
  
 ## Mockups - Bart-Jan
 
@@ -66,7 +68,7 @@ npm start
 ![alt text](https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert/blob/master/Kwizzert%20Component.jpg "Component Diagram")
  
 ### Deployment Diagram
-![alt text](https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert/blob/master/Kwizzert%20Deployment.jpg "Deployment Diagram")
+![alt text](https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert/blob/master/Kwizzert%20Deployment.jpg "Deployment Diagram") 
 
 ## Communication Protocol - Sven
 REST
@@ -75,14 +77,16 @@ Websocket
 ## Components - Bart-Jan
 
 ## Routes - Bart-Jan
-/:gameID/:team
+/team/:gameID/:teamId
 team ui
 
-/:gameID/master
+/master/:gameID
 quiz master ui
 
-/:gameID/score
+/scoreboard/:gameID
 scoreboard ui
+
+/team/, /master/ and /scoreboard/ are serverside routing, all other routing will be done clientside.
 
 ## External libraries
 Mongoose
@@ -93,3 +97,4 @@ Redux
 Bootstrap
 
 ## Todos
+--TODO Sven: fix protocols, add description of components to diagram
