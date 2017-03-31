@@ -62,6 +62,8 @@ npm start
  - The App keeps a history of played games
  
 ## Mockups - Bart-Jan
+http://ugjp7u.axshare.com
+
 
 ## Architecture - Sven
 ### Component Diagram
