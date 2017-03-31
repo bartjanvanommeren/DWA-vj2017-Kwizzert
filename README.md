@@ -84,7 +84,7 @@ http://ugjp7u.axshare.com
 ![alt text](https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert/blob/master/Kwizzert%20Component.jpg "Component Diagram")
  
 ### Deployment Diagram
-![alt text](https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert/blob/master/Kwizzert%20Deployment.jpg "Deployment Diagram") 
+![alt text](https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert/blob/master/Kwizzert%20Deployment%20v2.jpg "Deployment Diagram") 
 
 ## Communication Protocol - Sven
 REST
