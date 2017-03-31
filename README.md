@@ -105,26 +105,33 @@ The communication between the business layer and the SPA's will be done through 
 The communication between the clients (browsers) and the Kwizzert App will be done through Websockets. The content of the messages send 
 will be documented below once they have been specified.
 
-## Components - Bart-Jan
+## React Components - Bart-Jan
 
 ## Routes - Bart-Jan
 /team/join
+
 Team UI to join a game.
 
 /team/:gameID/:teamId
+
 Team UI for a running game.
 
 /master/create
+
 Kwizmeesterst UI for creating a new game.
 
 /master/:gameID
+
 Kwizmeestert UI for a running game.
 
 /scoreboard/connect
+
 Scoreboard UI for connecting a scoreboard to a running game.
 
 /scoreboard/:gameID
+
 Scoreboard UI for a running game.
+
 
 /team/, /master/ and /scoreboard/ are serverside routing, all other routing will be done clientside.
 
