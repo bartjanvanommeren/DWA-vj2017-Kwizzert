@@ -88,7 +88,16 @@ http://ugjp7u.axshare.com
 
 Component|Description
 ---|---
-
+React | Library used to create Single Page Applications with JavaScript
+React-Router | Library for React to route the web application on the client
+NodeJS | Serverside JavaScript
+Kwizzert | Main application that serves all three Single Page Applications
+ScorebordSPA | Single Page Application for the scoreboard app
+TeamSPA | Single Page Application for the teams app
+KwizmeestertSPA | Single Page Application for the quiz master app
+BusinessLayer | Handles all database interactions
+Mongoose | Provides schema's for MongoDB models
+MongoDB | Database to store information for the Kwizzert
 
 ## Communication Protocol - Sven
 The communication between the business layer and the SPA's will be done through a REST API. The specific API calls will be documented below once they have been specified.
