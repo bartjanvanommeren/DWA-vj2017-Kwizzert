@@ -85,10 +85,15 @@ http://ugjp7u.axshare.com
  
 ### Deployment Diagram
 ![alt text](https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert/blob/master/Kwizzert%20Deployment%20v2.jpg "Deployment Diagram") 
+|Component|Description|
+|---|---|
+
 
 ## Communication Protocol - Sven
-REST
-Websocket
+The communication between the business layer and the SPA's will be done through a REST API. The specific API calls will be documented below once they have been specified.
+
+The communication between the clients (browsers) and the Kwizzert App will be done through Websockets. The content of the messages send 
+will be documented below once they have been specified.
 
 ## Components - Bart-Jan
 
