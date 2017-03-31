@@ -62,6 +62,21 @@ npm start
  - The App keeps a history of played games
  
 ## Mockups - Bart-Jan
+The game has several states it can cycle through, based on what the game master is doing the scoreboard and the team app will display status messages or navigate to new pages.
+
+State examples:
+Pre Game
+Pre Round
+Pre Question
+Question
+Post Question
+
+Flow examples
+GM starts game -> Signups of teams (Pre Game) -> GM selects categories for current round (Pre Round) ->GM selects the question (Pre Question) -> The teams submit answers (Question) -> The GM closes submissions and validates answers (Post Question) -> The GM selects next question (Question Setup)
+
+The game will repeat the last cycle from question select 12 times after which it will drop back into Pre Round and the scoreboard will update the current scores.
+
+an example of what the apps will look like can be found here:
 http://ugjp7u.axshare.com
 
 
