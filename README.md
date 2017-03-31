@@ -16,50 +16,49 @@ npm install
 npm start
 ```
 ## Requirements
-
- - There are teams
+### Teams
  - Team sizes do not matter
+ - Teams can join a game with the provided password
  - Teams can only join at the beginning of a game
  - Atleast two teams signup but there can be more participating teams
  - A game consists of multiple rounds and each round has 12 questions
  - Questions can be selected from 3 categories
- 
- - There is a quiz master
- - quiz master verify's team submissions
- - can start a game
+ - The team app can be used on smartphones
+
+### Kwizmeestert
+ - Quiz master verify's team submissions
+ - The quiz master can start a game
  - The quiz master can select the 3 category's for the question of that round
  - The quiz master verify's wether answers submitted by the participatting teams are valid or not
  - The quiz master can skip a question
  - The quiz master can end a game
  - The quiz master can select the next question
+ - The quiz master app can be used on tablets
  
- - There is a scoreboard
+ ### Scoreboard
  - The scoreboard displays the points of the teams
  - The scoreboard displays the time left to answer a question
  - The scoreboard indicates what state the game is in examples: quizz setup, answer submission, answer validation, post game screen
- - displays the round
- - displays the question
- - displays team names and the scores of these teams
- - displays the amount of correct answers this round
- - displays category of the question
- - live updates on verification input of the quiz master
- - The scoreboard only shows the top three teams and emphasizes the winning team
+ - Displays the round
+ - Displays the question
+ - Displays team names and the scores of these teams
+ - Displays the amount of correct answers this round
+ - Displays category of the question
+ - Live updates on verification input of the quiz master
+ - The scoreboard emphasizes the winning team after a game/round has ended
+ - The scoreboard app can be used on a regular screen
  
- - The team client is scaled to be used on smartphones
- - The quiz master client is scaled to be used on tablets
- - The scoreboard client is scaled to be used on beamers
- 
- - The server supports multiple games running simutaniusly
+ - The server supports multiple games running simultaniously
  
  - Every question is only asked once
  - Team names are unique and required
- - Teams can edit their answer after submitting it
+ - Teams can edit their answer after submitting it, as long as the question has not been closed by the quiz master
  - Empty answers by teams are ignored
  
 ### Optional Requirements
  - Questions are time limited
- - Multiple clients of the same team can connect
  - The App keeps a history of played games
+ - The database stores the game data so games can be played over multiple days
  
 ## Mockups - Bart-Jan
 The game has several states it can cycle through, based on what the game master is doing the scoreboard and the team app will display status messages or navigate to new pages.
@@ -76,15 +75,15 @@ GM starts game -> Signups of teams (Pre Game) -> GM selects categories for curre
 
 The game will repeat the last cycle from question select 12 times after which it will drop back into Pre Round and the scoreboard will update the current scores.
 
-an example of what the apps will look like can be found here:
+An example of what the apps will look like can be found here:
 http://ugjp7u.axshare.com
 
 ## Architecture - Sven
 ### Component Diagram
-![alt text](https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert/blob/master/Kwizzert%20Component.jpg "Component Diagram")
+![Component Diagram](https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert/blob/master/Kwizzert%20Component.jpg "Component Diagram")
  
 ### Deployment Diagram
-![alt text](https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert/blob/master/Kwizzert%20Deployment%20v2.jpg "Deployment Diagram")
+![Deployment Diagram](https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert/blob/master/Kwizzert%20Deployment%20v2.jpg "Deployment Diagram")
 
 Component|Description
 ---|---
@@ -136,9 +135,9 @@ Scoreboard UI for a running game.
 /team/, /master/ and /scoreboard/ are serverside routing, all other routing will be done clientside.
 
 ## External libraries
-Mongoose
-React
-React-router
-Websocket
-Redux
-Bootstrap
+- Mongoose
+- React
+- React-router
+- Websocket
+- Bootstrap
+- Express
