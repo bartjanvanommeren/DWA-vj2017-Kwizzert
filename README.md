@@ -85,8 +85,8 @@ http://ugjp7u.axshare.com
  
 ### Deployment Diagram
 ![alt text](https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert/blob/master/Kwizzert%20Deployment%20v2.jpg "Deployment Diagram") 
-|Component|Description||
-|---|---||
+Component|Description
+---|---
 
 
 ## Communication Protocol - Sven
