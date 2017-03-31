@@ -7,7 +7,7 @@ Kwizzert is a real-time web-app supposed to be used as an party game for groups 
 A more extensive description of the app can be found in Kwizzert Description.pdf [Kwizzert Description.pdf](https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert/blob/master/Kwizzert%20Description.pdf)
 
 ### Version
-0.0.0
+0.0.1
 
 ## Installation
 ```
@@ -99,7 +99,7 @@ BusinessLayer | Handles all database interactions
 Mongoose | Provides schema's for MongoDB models
 MongoDB | Database to store information for the Kwizzert
 
-## Communication Protocol - Sven
+## Communication Protocol - Sven & Bart-Jan
 The communication between the business layer and the SPA's will be done through a REST API. The specific API calls will be documented below once they have been specified.
 
 The communication between the clients (browsers) and the Kwizzert App will be done through Websockets. The content of the messages send 
@@ -108,24 +108,30 @@ will be documented below once they have been specified.
 ## Components - Bart-Jan
 
 ## Routes - Bart-Jan
+/team/join
+Team UI to join a game.
+
 /team/:gameID/:teamId
-team ui
+Team UI for a running game.
+
+/master/create
+Kwizmeesterst UI for creating a new game.
 
 /master/:gameID
-quiz master ui
+Kwizmeestert UI for a running game.
+
+/scoreboard/connect
+Scoreboard UI for connecting a scoreboard to a running game.
 
 /scoreboard/:gameID
-scoreboard ui
+Scoreboard UI for a running game.
 
 /team/, /master/ and /scoreboard/ are serverside routing, all other routing will be done clientside.
 
 ## External libraries
 Mongoose
 React
-React router
+React-router
 Websocket
 Redux
 Bootstrap
-
-## Todos
---TODO Sven: fix protocols, add description of components to diagram
