@@ -352,28 +352,22 @@ PostGame -
 Displays a leaderboard, top 3 winning teams will be emphasized.
 
 ## Routes - Bart-Jan
-``/team/join``
-
+``/team/join`` <br> 
 Team UI to join a game.
 
-``/team/:gameID/:teamId``
-
+``/team/:gameID/:teamId`` <br> 
 Team UI for a running game.
 
-/master/create
-
+``/master/create`` <br>
 Kwizmeesterst UI for creating a new game.
 
-/master/:gameID
-
+``/master/:gameID`` <br>
 Kwizmeestert UI for a running game.
 
-/scoreboard/connect
-
+``/scoreboard/connect`` <br>
 Scoreboard UI for connecting a scoreboard to a running game.
 
-/scoreboard/:gameID
-
+``/scoreboard/:gameID`` <br>
 Scoreboard UI for a running game.
 
 
