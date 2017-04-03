@@ -87,6 +87,7 @@ http://ugjp7u.axshare.com
 ![Component Diagram](https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert/blob/master/Kwizzert%20Component.jpg "Component Diagram")
  
 ### Deployment Diagram
+waarom deze, waarom twee servers
 ![Deployment Diagram](https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert/blob/master/Kwizzert%20Deployment%20v2.jpg "Deployment Diagram")
 
 ### Component Descriptions
@@ -107,7 +108,7 @@ MongoDB | Database to store information for the Kwizzert
 The communication between the business layer and the SPA's will be done through a REST API. For now, the only functionality this API offers is getting the list of questions for a specific category, getting the details for a specific question id and getting a list of all possible categories.
 
 For getting the list of questions:
-``/api/:version/questions/:category`` --GET
+``/api/:version/questions/:category`` --GET **weten welk formaat je terug krijgt**
 
 For getting the list of categories:
 ``/api/:version/categories`` --GET
@@ -138,7 +139,7 @@ The response following this request:
 {
     MessageType : CREATE_GAME_RESPONSE,
     Message : {
-                   Status: String,
+                   Status: "OKAY" | "ERROR"
                    Password: String
               }
 }
@@ -150,6 +151,7 @@ The message that is sent when a team registers:
 {
     MessageType : TEAM_REGISTER,
     Message : {
+                  TeamName: String
                   Password: String
               }
 }
@@ -159,7 +161,7 @@ This will trigger a responsemessage:
 {
     MessageType : TEAM_REGISTER_RESPONSE,
     Message : {
-                   Status: String
+                   Status: "OKAY" | "ERROR"
               }
 }
 ```
@@ -198,7 +200,7 @@ The server will respond to request with the following message:
 {
     MessageType : SCOREBOARD_REGISTER_RESPONSE,
     Message : {
-                  Status: String,
+                  Status: "OKAY" | "ERROR"
                   Round : Number,
                   QuestionNumber: Number,
                   Question : String,
@@ -258,7 +260,7 @@ The server responds to this request:
 {
     MessageType : START_ROUND_RESPONSE,
     Message : {
-                   Status: String
+                   Status: "OKAY" | "ERROR"
               }
 }
 ```
@@ -365,6 +367,9 @@ PostGame -
 Displays a leaderboard, top 3 winning teams will be emphasized.
 
 ## Routes
+The following routes are available, bookmarking or manually typing in an URL will redirect users to the initial page.
+/team/, /master/ and /scoreboard/ are serverside routing, all other routing will be done clientside.
+
 ``/team/join`` <br> 
 Team UI to join a game.
 
@@ -382,9 +387,6 @@ Scoreboard UI for connecting a scoreboard to a running game.
 
 ``/scoreboard/:gameID`` <br>
 Scoreboard UI for a running game.
-
-
-/team/, /master/ and /scoreboard/ are serverside routing, all other routing will be done clientside.
 
 ## External libraries
 Libary name | Version
