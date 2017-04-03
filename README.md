@@ -107,7 +107,7 @@ For getting the list of questions:
 For getting the list of categories:
 /api/:version/categories --GET
 
-The communication between the clients (browsers) and the Kwizzert App will be done through Websockets. Each message contains a type which specifies what kind of message has been sent, so both the client and the server can identify what action should be executed.
+The communication between the clients (browsers) and the Kwizzert App will be done through Websockets. Each message contains a type which specifies what kind of message has been sent, so both the client and the server can identify what action should be executed. All messages are sent as JSON strings.
 
 A generic message sent over the websocket would look like this:
 ``` JavaScript
@@ -191,30 +191,74 @@ The server will respond to request with the following message:
     MessageType : SCOREBOARD_REGISTER_RESPONSE,
     Message : {
                   Status: String,
-                  Round : Integer,
-                  QuestionNumber: Integer,
+                  Round : Number,
+                  QuestionNumber: Number,
                   Question : String,
-                  CurrentScore : [(TeamName : String, Score: Double)]
+                  CurrentScore : [(TeamName : String, Score: Number)]
 }
 ```
 
 ### Starting Game
-The message sent by the quiz master when a game is started:
+The message that is sent by the quiz master when a game is started:
 ``` JavaScript
 {
     MessageType : START_GAME,
-    Message : {}
+    Message : {
+                  Password: String
+              }
 }
 ```
-This will trigger a response to all approved teams as well as a scoreboard (if connected):
+This will trigger a response to all approved teams:
 ``` JavaScript
 {
     MessageType : GAME_STARTED,
     Message : {
                   Password: String,
-                  Round : Integer,
-                  QuestionNumber : Integer
+                  Round : Number,
+                  QuestionNumber : Number
               }
+}
+```
+A similar message is sent to the scoreboard, but it also contains the score for all teams:
+``` JavaScript
+{
+    MessageType : GAME_STARTED,
+    Message : {
+                  Password: String,
+                  Round : Number,
+                  QuestionNumber : Number,
+                  CurrentScore : [(TeamName : String, Score: Number)]
+              }
+}
+```
+
+### Starting Round
+This message is sent by the quiz master when he starts a round:
+``` JavaScript
+{
+    MessageType : START_ROUND,
+    Message : {
+                  Password: String,
+                  CategoryOne : String,
+                  CategoryTwo : String,
+                  CategoryThree : String
+              }    
+}
+```
+The server responds to this request:
+``` JavaScript
+{
+    MessageType : START_ROUND_RESPONSE,
+    Message : {
+                   Status: String
+              }
+}
+```
+If the round is started a message is sent to the teams and the scoreboard:
+``` JavaScript
+{
+    MessageType : ROUND_STARTED,
+    Message : {}
 }
 ```
 
