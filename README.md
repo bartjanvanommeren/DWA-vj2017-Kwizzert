@@ -117,18 +117,18 @@ A generic message sent over the websocket would look like this:
 }
 ```
 
-### Starting Game
-Message is sent when the quiz master starts a game:
+### Create Game
+Message is sent when the quiz master creates a game:
 ``` JavaScript
 {
-    MessageType : START_GAME,
+    MessageType : CREATE_GAME,
     Message : {}
 }
 ```
 The response following this request:
 ``` JavaScript
 {
-    MessageType : START_GAME_RESPONSE,
+    MessageType : CREATE_GAME_RESPONSE,
     Message : {
                    Status: String,
                    Password: String
@@ -174,6 +174,50 @@ The quiz master can then either approve or deny the request:
               }
 }
 ```
+
+### Registering Scoreboard
+Message sent by the scoreboard to connect to a game:
+``` JavaScript
+{
+    MessageType : SCOREBOARD_REGISTER,
+    Message : {
+                  Password: String
+              }
+}
+```
+The server will respond to request with the following message:
+``` JavaScript
+{
+    MessageType : SCOREBOARD_REGISTER_RESPONSE,
+    Message : {
+                  Status: String,
+                  Round : Integer,
+                  QuestionNumber: Integer,
+                  Question : String,
+                  CurrentScore : [(TeamName : String, Score: Double)]
+}
+```
+
+### Starting Game
+The message sent by the quiz master when a game is started:
+``` JavaScript
+{
+    MessageType : START_GAME,
+    Message : {}
+}
+```
+This will trigger a response to all approved teams as well as a scoreboard (if connected):
+``` JavaScript
+{
+    MessageType : GAME_STARTED,
+    Message : {
+                  Password: String,
+                  Round : Integer,
+                  QuestionNumber : Integer
+              }
+}
+```
+
 
 ## React Components - Bart-Jan
 
