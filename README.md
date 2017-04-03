@@ -295,7 +295,8 @@ A message is sent to both the teams and the scoreboard if the new question has b
 {
     MessageType : NEW_QUESTION,
     Message : {
-                   QuestionId: String,
+                   Question: String,
+                   Category : String
               }
 }
 ```
