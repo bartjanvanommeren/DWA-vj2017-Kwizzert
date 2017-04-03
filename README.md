@@ -99,10 +99,22 @@ Mongoose | Provides schema's for MongoDB models
 MongoDB | Database to store information for the Kwizzert
 
 ## Communication Protocol - Sven & Bart-Jan
-The communication between the business layer and the SPA's will be done through a REST API. The specific API calls will be documented below once they have been specified.
+The communication between the business layer and the SPA's will be done through a REST API. For now, the only functionality this API offers is getting the list of questions for a specific category and getting a list of all possible categories.
 
-The communication between the clients (browsers) and the Kwizzert App will be done through Websockets. The content of the messages send 
-will be documented below once they have been specified.
+For getting the list of questions:
+/api/:version/questions/:category --GET
+
+For getting the list of categories:
+/api/:version/categories --GET
+
+The communication between the clients (browsers) and the Kwizzert App will be done through Websockets. Each message contains a type which specifies what kind of message has been sent, so both the client and the server can identify what action should be executed.
+
+``` JavaScript
+{
+    MessageType : String
+    Message : String
+}
+```
 
 ## React Components - Bart-Jan
 
