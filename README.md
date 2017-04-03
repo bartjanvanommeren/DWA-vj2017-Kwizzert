@@ -88,7 +88,7 @@ http://ugjp7u.axshare.com
  
 ### Deployment Diagram
 waarom deze, waarom twee servers
-![Deployment Diagram](https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert/blob/master/Kwizzert%20Deployment%20v2.jpg "Deployment Diagram")
+![Deployment Diagram](https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert/blob/master/Kwizzert%20Deployment.jpg "Deployment Diagram")
 
 ### Component Descriptions
 Component|Description
