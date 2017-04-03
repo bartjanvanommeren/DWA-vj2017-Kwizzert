@@ -296,6 +296,14 @@ A message is sent to both the teams and the scoreboard if the new question has b
 }
 ```
 
+### Submit answer team
+
+### Close Question
+
+### Submit correct answers quiz master
+
+### Start selecting new question quiz master
+
 ## React Components - Bart-Jan
 Here you can find a list of planned components, we plan to split jsx and logical code staying true to the MVVM pattern, communication with the server will not be split and live in the controller of the specific page.
 
