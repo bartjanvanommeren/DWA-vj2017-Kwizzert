@@ -99,7 +99,7 @@ Mongoose | Provides schema's for MongoDB models
 MongoDB | Database to store information for the Kwizzert
 
 ## Communication Protocol - Sven & Bart-Jan
-The communication between the business layer and the SPA's will be done through a REST API. For now, the only functionality this API offers is getting the list of questions for a specific category and getting a list of all possible categories.
+The communication between the business layer and the SPA's will be done through a REST API. For now, the only functionality this API offers is getting the list of questions for a specific category, getting the details for a specific question id and getting a list of all possible categories.
 
 For getting the list of questions:
 /api/:version/questions/:category --GET
@@ -107,7 +107,10 @@ For getting the list of questions:
 For getting the list of categories:
 /api/:version/categories --GET
 
-The communication between the clients (browsers) and the Kwizzert App will be done through Websockets. Each message contains a type which specifies what kind of message has been sent, so both the client and the server can identify what action should be executed.
+For getting the details of a specific question:
+/api/:version/question/:id
+
+The communication between the clients (browsers) and the Kwizzert App will be done through Websockets. Each message contains a type which specifies what kind of message has been sent, so both the client and the server can identify what action should be executed. All messages are sent as JSON strings.
 
 A generic message sent over the websocket would look like this:
 ``` JavaScript
@@ -191,35 +194,161 @@ The server will respond to request with the following message:
     MessageType : SCOREBOARD_REGISTER_RESPONSE,
     Message : {
                   Status: String,
-                  Round : Integer,
-                  QuestionNumber: Integer,
+                  Round : Number,
+                  QuestionNumber: Number,
                   Question : String,
-                  CurrentScore : [(TeamName : String, Score: Double)]
+                  CurrentScore : [(TeamName : String, Score: Number)]
 }
 ```
 
 ### Starting Game
-The message sent by the quiz master when a game is started:
+The message that is sent by the quiz master when a game is started:
 ``` JavaScript
 {
     MessageType : START_GAME,
-    Message : {}
+    Message : {
+                  Password: String
+              }
 }
 ```
-This will trigger a response to all approved teams as well as a scoreboard (if connected):
+This will trigger a response to all approved teams:
 ``` JavaScript
 {
     MessageType : GAME_STARTED,
     Message : {
                   Password: String,
-                  Round : Integer,
-                  QuestionNumber : Integer
+                  Round : Number,
+                  QuestionNumber : Number
+              }
+}
+```
+A similar message is sent to the scoreboard, but it also contains the score for all teams:
+``` JavaScript
+{
+    MessageType : GAME_STARTED,
+    Message : {
+                  Password: String,
+                  Round : Number,
+                  QuestionNumber : Number,
+                  CurrentScore : [(TeamName : String, Score: Number)]
               }
 }
 ```
 
+### Starting Round
+This message is sent by the quiz master when he starts a round:
+``` JavaScript
+{
+    MessageType : START_ROUND,
+    Message : {
+                  Password: String,
+                  CategoryOne : String,
+                  CategoryTwo : String,
+                  CategoryThree : String
+              }    
+}
+```
+The server responds to this request:
+``` JavaScript
+{
+    MessageType : START_ROUND_RESPONSE,
+    Message : {
+                   Status: String
+              }
+}
+```
+If the round is started a message is sent to the teams and the scoreboard:
+``` JavaScript
+{
+    MessageType : ROUND_STARTED,
+    Message : {}
+}
+```
+
+### Start Question
+Sent by the quiz master once he has selected a question:
+``` JavaScript
+{
+    MessageType : NEW_QUESTION_SELECTED,
+    Message : {
+                   Password: String,
+                   QuestionId : String
+              }
+}
+```
+The quiz master gets a response to this request:
+``` JavaScript
+{
+    MessageType : NEW_QUESTION_SELECTED_RESPONSE,
+    Message : {
+                   Status: String
+              }
+}
+```
+A message is sent to both the teams and the scoreboard if the new question has been approved:
+``` JavaScript
+{
+    MessageType : NEW_QUESTION,
+    Message : {
+                   QuestionId: String,
+              }
+}
+```
 
 ## React Components - Bart-Jan
+Here you can find a list of planned components, we plan to split jsx and logical code staying true to the MVVM pattern, communication with the server will not be split and live in the controller of the specific page.
+
+### Quiz Master
+
+Header -
+Lets the quiz master end a game, displays the current round/ question.
+
+CreateGame -
+Lets the quiz master register a new game, server will communicate wether the game name is accepted.
+
+GameSetup -
+Shows the quiz master teams that signin to the game, quiz master can select which teams are allowed to join and can start the game.
+
+RoundSetup -
+Lets the quiz master pick categories out of available categories.
+
+QuestionSetup -
+Lets the quiz master pick a question out of selected categories, by default a random question will be selected, selected questions will be removed from the question list.
+
+QuestionProgress -
+Shows the quiz master team submissions and lets the game master close submissions
+
+PostQuestion -
+Lets the quiz master verify wether answer are correct or not.
+
+### Team
+
+Header -
+Displays the current round/ question.
+
+Signup -
+Lets the team signup for a game with submitted team name.
+
+Status -
+Used when there is no input needed from teams, shows a short message about the current state of the game.
+
+Question -
+Lets the team submit and edit an answer.
+
+### Scoreboard
+
+Header -
+Displays the current round/ question.
+
+Signin -
+Lets the scoreboard connect to a game.
+
+Status -
+Displays the scores, correct answers, current state and team names.
+Also displays the category, question and answer.
+
+PostGame -
+Displays a leaderboard, top 3 winning teams will be emphasized.
 
 ## Routes - Bart-Jan
 /team/join
