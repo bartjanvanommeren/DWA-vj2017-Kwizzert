@@ -264,6 +264,59 @@ If the round is started a message is sent to the teams and the scoreboard:
 
 
 ## React Components - Bart-Jan
+Here you can find a list of planned components, we plan to split jsx and logical code staying true to the MVVM pattern, communication with the server will not be split and live in the controller of the specific page.
+
+### Quiz Master
+
+Header -
+Lets the quiz master end a game, displays the current round/ question.
+
+CreateGame -
+Lets the quiz master register a new game, server will communicate wether the game name is accepted.
+
+GameSetup -
+Shows the quiz master teams that signin to the game, quiz master can select which teams are allowed to join and can start the game.
+
+RoundSetup -
+Lets the quiz master pick categories out of available categories.
+
+QuestionSetup -
+Lets the quiz master pick a question out of selected categories, by default a random question will be selected, selected questions will be removed from the question list.
+
+QuestionProgress -
+Shows the quiz master team submissions and lets the game master close submissions
+
+PostQuestion -
+Lets the quiz master verify wether answer are correct or not.
+
+### Team
+
+Header -
+Displays the current round/ question.
+
+Signup -
+Lets the team signup for a game with submitted team name.
+
+Status -
+Used when there is no input needed from teams, shows a short message about the current state of the game.
+
+Question -
+Lets the team submit and edit an answer.
+
+### Scoreboard
+
+Header -
+Displays the current round/ question.
+
+Signin -
+Lets the scoreboard connect to a game.
+
+Status -
+Displays the scores, correct answers, current state and team names.
+Also displays the category, question and answer.
+
+PostGame -
+Displays a leaderboard, top 3 winning teams will be emphasized.
 
 ## Routes - Bart-Jan
 /team/join
