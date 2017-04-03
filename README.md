@@ -107,13 +107,13 @@ MongoDB | Database to store information for the Kwizzert
 The communication between the business layer and the SPA's will be done through a REST API. For now, the only functionality this API offers is getting the list of questions for a specific category, getting the details for a specific question id and getting a list of all possible categories.
 
 For getting the list of questions:
-/api/:version/questions/:category --GET
+``/api/:version/questions/:category`` --GET
 
 For getting the list of categories:
-/api/:version/categories --GET
+``/api/:version/categories`` --GET
 
 For getting the details of a specific question:
-/api/:version/question/:id
+``/api/:version/question/:id`` --GET
 
 The communication between the clients (browsers) and the Kwizzert App will be done through Websockets. Each message contains a type which specifies what kind of message has been sent, so both the client and the server can identify what action should be executed. All messages are sent as JSON strings.
 
