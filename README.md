@@ -4,7 +4,7 @@ This README will give you a short summary of the Kwizzert App. We start with a w
 
 Kwizzert is a real-time web-app supposed to be used as an party game for groups of people setting up and taking quizzes, a pub quiz.
 
-A more extensive description of the app can be found in Kwizzert Description.pdf [Kwizzert Description.pdf](https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert/blob/master/Kwizzert%20Description.pdf)
+A more extensive description of the app can be found in [Kwizzert Description.pdf](https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert/blob/master/Kwizzert%20Description.pdf)
 
 ### Version
 0.0.1
@@ -24,6 +24,8 @@ npm start
  - A game consists of multiple rounds and each round has 12 questions
  - Questions can be selected from 3 categories
  - The team app can be used on smartphones
+ - Team names are unique and required
+ - Teams can edit their answer after submitting it, as long as the question has not been closed by the quiz master
 
 ### Kwizmeestert
  - Quiz master verify's team submissions
@@ -35,7 +37,7 @@ npm start
  - The quiz master can select the next question
  - The quiz master app can be used on tablets
  
- ### Scoreboard
+### Scoreboard
  - The scoreboard displays the points of the teams
  - The scoreboard displays the time left to answer a question
  - The scoreboard indicates what state the game is in examples: quizz setup, answer submission, answer validation, post game screen
@@ -48,11 +50,9 @@ npm start
  - The scoreboard emphasizes the winning team after a game/round has ended
  - The scoreboard app can be used on a regular screen
  
+### Other 
  - The server supports multiple games running simultaniously
- 
- - Every question is only asked once
- - Team names are unique and required
- - Teams can edit their answer after submitting it, as long as the question has not been closed by the quiz master
+ - Every question is only asked once  
  - Empty answers by teams are ignored
  
 ### Optional Requirements
