@@ -109,10 +109,69 @@ For getting the list of categories:
 
 The communication between the clients (browsers) and the Kwizzert App will be done through Websockets. Each message contains a type which specifies what kind of message has been sent, so both the client and the server can identify what action should be executed.
 
+A generic message sent over the websocket would look like this:
 ``` JavaScript
 {
-    MessageType : String
-    Message : String
+    MessageType : String,
+    Message : Object
+}
+```
+
+### Starting Game
+Message is sent when the quiz master starts a game:
+``` JavaScript
+{
+    MessageType : START_GAME,
+    Message : {}
+}
+```
+The response following this request:
+``` JavaScript
+{
+    MessageType : START_GAME_RESPONSE,
+    Message : {
+                   Status: String,
+                   Password: String
+              }
+}
+```
+
+### Registering Team
+The message that is sent when a team registers:
+``` JavaScript
+{
+    MessageType : TEAM_REGISTER,
+    Message : {
+                  Password: String
+              }
+}
+```
+This will trigger a responsemessage: 
+``` JavaScript
+{
+    MessageType : TEAM_REGISTER_RESPONSE,
+    Message : {
+                   Status: String
+              }
+}
+```
+If the team register request was succesful, a message is sent to the quiz master as well:
+``` JavaScript
+{
+    MessageType : NEW_TEAM_REGISTERED
+    Message : {
+                   TeamName : String
+              }
+}
+```
+The quiz master can then either approve or deny the request:
+``` JavaScript
+{
+    MessageType : NEW_TEAM_REGISTERED_APPROVAL
+    Message : {
+                   TeamName : String,
+                   Approved : Boolean
+              }
 }
 ```
 
@@ -147,9 +206,13 @@ Scoreboard UI for a running game.
 /team/, /master/ and /scoreboard/ are serverside routing, all other routing will be done clientside.
 
 ## External libraries
-- Mongoose
-- React
-- React-router
-- Websocket
-- Bootstrap
-- Express
+Libary name | Version
+--- | ---
+[NodeJS](https://nodejs.org/en/) | 6.10.1
+[MongoDb](https://www.mongodb.com/) | 3.4.3
+[Mongoose](http://mongoosejs.com/) | 4.9.3
+[React](https://facebook.github.io/react/) | 15.4.2
+[React-router](https://github.com/ReactTraining/react-router) | 4.0.0
+[Ws](https://github.com/websockets/ws) | 2.2.2
+[Bootstrap](http://getbootstrap.com/) | 3.3.7 
+[Express](https://expressjs.com/) | 4.15.2
