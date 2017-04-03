@@ -352,11 +352,11 @@ PostGame -
 Displays a leaderboard, top 3 winning teams will be emphasized.
 
 ## Routes - Bart-Jan
-/team/join
+``/team/join``
 
 Team UI to join a game.
 
-/team/:gameID/:teamId
+``/team/:gameID/:teamId``
 
 Team UI for a running game.
 
