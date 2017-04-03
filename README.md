@@ -99,13 +99,16 @@ Mongoose | Provides schema's for MongoDB models
 MongoDB | Database to store information for the Kwizzert
 
 ## Communication Protocol - Sven & Bart-Jan
-The communication between the business layer and the SPA's will be done through a REST API. For now, the only functionality this API offers is getting the list of questions for a specific category and getting a list of all possible categories.
+The communication between the business layer and the SPA's will be done through a REST API. For now, the only functionality this API offers is getting the list of questions for a specific category, getting the details for a specific question id and getting a list of all possible categories.
 
 For getting the list of questions:
 /api/:version/questions/:category --GET
 
 For getting the list of categories:
 /api/:version/categories --GET
+
+For getting the details of a specific question:
+/api/:version/question/:id
 
 The communication between the clients (browsers) and the Kwizzert App will be done through Websockets. Each message contains a type which specifies what kind of message has been sent, so both the client and the server can identify what action should be executed. All messages are sent as JSON strings.
 
@@ -262,6 +265,35 @@ If the round is started a message is sent to the teams and the scoreboard:
 }
 ```
 
+### Start Question
+Sent by the quiz master once he has selected a question:
+``` JavaScript
+{
+    MessageType : NEW_QUESTION_SELECTED,
+    Message : {
+                   Password: String,
+                   QuestionId : String
+              }
+}
+```
+The quiz master gets a response to this request:
+``` JavaScript
+{
+    MessageType : NEW_QUESTION_SELECTED_RESPONSE,
+    Message : {
+                   Status: String
+              }
+}
+```
+A message is sent to both the teams and the scoreboard if the new question has been approved:
+``` JavaScript
+{
+    MessageType : NEW_QUESTION,
+    Message : {
+                   QuestionId: String,
+              }
+}
+```
 
 ## React Components - Bart-Jan
 Here you can find a list of planned components, we plan to split jsx and logical code staying true to the MVVM pattern, communication with the server will not be split and live in the controller of the specific page.
