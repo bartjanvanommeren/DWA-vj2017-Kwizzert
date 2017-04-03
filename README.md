@@ -9,6 +9,10 @@ A more extensive description of the app can be found in [Kwizzert Description.pd
 ### Version
 0.0.1
 
+### Authors
+- Bart-Jan van Ommeren
+- Sven Pouwels
+
 ## Installation
 ```
 git clone https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert.git
@@ -60,7 +64,7 @@ npm start
  - The App keeps a history of played games
  - The database stores the game data so games can be played over multiple days
  
-## Mockups - Bart-Jan
+## Mockups
 The game has several states it can cycle through, based on what the game master is doing the scoreboard and the team app will display status messages or navigate to new pages.
 
 State examples:
@@ -78,7 +82,7 @@ The game will repeat the last cycle from question select 12 times after which it
 An example of what the apps will look like can be found here:
 http://ugjp7u.axshare.com
 
-## Architecture - Sven
+## Architecture
 ### Component Diagram
 ![Component Diagram](https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert/blob/master/Kwizzert%20Component.jpg "Component Diagram")
  
@@ -99,7 +103,7 @@ BusinessLayer | Handles all database interactions
 Mongoose | Provides schema's for MongoDB models
 MongoDB | Database to store information for the Kwizzert
 
-## Communication Protocol - Sven & Bart-Jan
+## Communication Protocol
 The communication between the business layer and the SPA's will be done through a REST API. For now, the only functionality this API offers is getting the list of questions for a specific category, getting the details for a specific question id and getting a list of all possible categories.
 
 For getting the list of questions:
@@ -304,8 +308,8 @@ A message is sent to both the teams and the scoreboard if the new question has b
 
 ### Start selecting new question quiz master
 
-## React Components - Bart-Jan
-Here you can find a list of planned components, we plan to split jsx and logical code staying true to the MVVM pattern, communication with the server will not be split and live in the controller of the specific page.
+## React Components
+Here you can find a list of planned components, we plan to split jsx and logical code staying true to the MVVM pattern, communication with the server will not be split and lives in the controller of the specific page.
 
 ### Quiz Master
 
@@ -359,7 +363,7 @@ Also displays the category, question and answer.
 PostGame -
 Displays a leaderboard, top 3 winning teams will be emphasized.
 
-## Routes - Bart-Jan
+## Routes
 ``/team/join`` <br> 
 Team UI to join a game.
 
