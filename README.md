@@ -79,30 +79,31 @@ GM starts game -> Signups of teams (Pre Game) -> GM selects categories for curre
 
 The game will repeat the last cycle from question select 12 times after which it will drop back into Pre Round and the scoreboard will update the current scores.
 
-An example of what the apps will look like can be found here:
-http://ugjp7u.axshare.com
+An example of what the apps will look like can be found [here](http://ugjp7u.axshare.com).
 
 ## Architecture
 ### Component Diagram
+This component diagram describes what components the Kwizzert exists out of. It also shows the connection between the several components and the interfaces that are used by the components to exchange data.
 ![Component Diagram](https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert/blob/master/Kwizzert%20Component.jpg "Component Diagram")
  
 ### Deployment Diagram
-waarom deze, waarom twee servers
+This deployment diagram shows the physical distribution of the components. It also describes which protocol(s) the communication between the several nodes exists of.
 ![Deployment Diagram](https://github.com/bartjanvanommeren/DWA-vj2017-Kwizzert/blob/master/Kwizzert%20Deployment.jpg "Deployment Diagram")
 
 ### Component Descriptions
 Component|Description
 ---|---
-React | Library used to create Single Page Applications with JavaScript
-React-Router | Library for React to route the web application on the client
-NodeJS | Serverside JavaScript
-Kwizzert | Main application that serves all three Single Page Applications
-ScorebordSPA | Single Page Application for the scoreboard app
-TeamSPA | Single Page Application for the teams app
-KwizmeestertSPA | Single Page Application for the quiz master app
-BusinessLayer | Handles all database interactions
-Mongoose | Provides schema's for MongoDB models
+Kwizzert | Main application that serves all three Single Page Applications. Uses NodeJs.
+ScorebordSPA | Single Page Application for the scoreboard app. React application.
+TeamSPA | Single Page Application for the teams app. React application.
+KwizmeestertSPA | Single Page Application for the quiz master app. React application.
+BusinessLayer | Handles all database interactions with help of Mongoose.
 MongoDB | Database to store information for the Kwizzert
+
+### Architectural Decisions
+Decision | Motivation
+--- | ---
+Three-tier architecture | To ensure the application can handle a great amount of users and running games the decision to use a three-tier architecture has been made. More information on tiered architecture can be found [here](https://msdn.microsoft.com/en-us/library/ee658120.aspx).
 
 ## Communication Protocol
 The communication between the business layer and the SPA's will be done through a REST API. For now, the only functionality this API offers is getting the list of questions for a specific category, getting the details for a specific question id and getting a list of all possible categories.
