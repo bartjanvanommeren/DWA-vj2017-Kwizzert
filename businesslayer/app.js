@@ -6,7 +6,7 @@ var app = express();
 mongoose.connect("mongodb://localhost:27017");
 
 app.get("/", function (req, res) {
-    res.status(503);
+    res.status(501);
     res.send("Invalid route");
 });
 

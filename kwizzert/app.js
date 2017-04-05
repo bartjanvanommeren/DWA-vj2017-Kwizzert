@@ -9,7 +9,10 @@ app.get("/", function (req, res) {
 });
 
 app.get("/team", function(req, res) {
-    res.status(200).send("Team");
+    res.status(200);
+    //console.log("dirname: " + __dirname+ "\\..\\master\\public\\index.html")
+    //res.sendFile(__dirname + "\\..\\master\\public\\index.html"); <-- doesn't work, forbidden error
+    res.send("Team");
 });
 
 app.get("/scoreboard", function (req, res) {
@@ -20,4 +23,4 @@ app.get("/master", function (req, res) {
     res.status(200).send("Master");
 })
 
-app.listen(1337);
+app.listen(1338);

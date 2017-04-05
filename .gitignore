@@ -22,3 +22,4 @@ yarn-error.log*
 /.idea
 businesslayer/node_modules/
 kwizzert/node_modules/
+kwizzert/master/node_modules/
