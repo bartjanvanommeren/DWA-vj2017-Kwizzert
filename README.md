@@ -109,13 +109,34 @@ Three-tier architecture | To ensure the application can handle a great amount of
 The communication between the business layer and the SPA's will be done through a REST API. For now, the only functionality this API offers is getting the list of questions for a specific category, getting the details for a specific question id and getting a list of all possible categories.
 
 For getting the list of questions:
-``/api/:version/questions/:category`` --GET **weten welk formaat je terug krijgt**
+``/api/:version/questions/:category`` --GET
+Returns:
+``` JavaScript
+{ 
+    "Questions": [{ "QuestionId" : String, "Description" : String }],
+    "Category" : String
+}
+```
 
 For getting the list of categories:
 ``/api/:version/categories`` --GET
+Returns:
+``` JavaScript
+{
+    "Categories: [{ "CategoryId" : String, "Name" : String }]
+}
+```
 
 For getting the details of a specific question:
 ``/api/:version/question/:id`` --GET
+Returns
+``` JavaScript
+{
+    "QuestionId" : String,
+    "Description" : String,
+    "Category" : String
+}
+```
 
 The communication between the clients (browsers) and the Kwizzert App will be done through Websockets. Each message contains a type which specifies what kind of message has been sent, so both the client and the server can identify what action should be executed. All messages are sent as JSON strings.
 
@@ -205,7 +226,7 @@ The server will respond to request with the following message:
                   Round : Number,
                   QuestionNumber: Number,
                   Question : String,
-                  CurrentScore : [(TeamName : String, Score: Number)]
+                  CurrentScore : [{ TeamName : String, Score: Number }]
 }
 ```
 
@@ -238,7 +259,7 @@ A similar message is sent to the scoreboard, but it also contains the score for 
                   Password: String,
                   Round : Number,
                   QuestionNumber : Number,
-                  CurrentScore : [(TeamName : String, Score: Number)]
+                  CurrentScore : [{ TeamName : String, Score: Number }]
               }
 }
 ```
@@ -305,12 +326,100 @@ A message is sent to both the teams and the scoreboard if the new question has b
 ```
 
 ### Submit answer team
+Sent after a team submits an answer, this can be either the initial answer or an updated answer:
+``` JavaScript
+{
+    MessageType : QUESTION_TEAM_ANSWER,
+    Message : {
+                   Password : String,
+                   Question : String
+                   Answer : String
+}
+```
+This will send a message to both the scoreboard and the quiz master:
+``` JavaScript
+{
+    MessageType : NEW_QUESTION_ANSWER,
+    Message : {
+                      TeamName: String
+                  }
+}
+```
 
 ### Close Question
+Sent when the quiz master closes the question:
+``` JavaScript
+{
+    MessageType : CLOSE_QUESTION,
+    Message : {
+                  Password: String,
+              }
+}
+```
+
+This sends the following response to the quiz master:
+``` JavaScript
+{
+    MessageType : CLOSE_QUESTION_RESPONSE,
+    Message : {
+                   Status : "OKAY" | "ERROR",
+                   TeamAnswers [{ TeamName : String, Answer : String }]
+              }
+}
+```
+
+The team receives the following message on the closure of the question:
+``` JavaScript
+{
+    MessageType : QUESTION_CLOSED,
+    Message : {                   
+    
+              }
+}
+```
+
+The scoreboard also receives a message: 
+``` JavaScript
+{
+    MessageType : CLOSE_QUESTION_RESPONSE,
+    Message : {
+                   TeamAnswers [{ TeamName : String, Answer : String }]
+              }
+}
+```
 
 ### Submit correct answers quiz master
+The quiz master sends the following message after selecting the correct answers:
+``` JavaScript
+{
+    MessageType : CORRECT_ANSWERS,
+    Message : {
+                   CorrectAnswers [ TeamName : String ]
+              }
+}
+```
+
+This will send an update to the scoreboard:
+``` JavaScript
+{
+    MessageType : CORRECT_ANSWERS_UPDATE,
+    Message : {                   
+                  CorrectAnswers [ TeamName : String ]
+                  CurrentScore : [{ TeamName : String, Score: Number }]
+              }
+}
+```
 
 ### Start selecting new question quiz master
+Sent to the quiz master after he either submits the correct answers or starts a new round:
+``` JavaScript
+{
+    MessageType : NEW_QUESTIONLIST
+    Message : {
+                  Questions: [{ QuestionId : String, Description : String, Category : String ]}
+              }
+}
+```
 
 ## React Components
 Here you can find a list of planned components, we plan to split jsx and logical code staying true to the MVVM pattern, communication with the server will not be split and lives in the controller of the specific page.
