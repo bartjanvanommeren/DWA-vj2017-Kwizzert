@@ -123,7 +123,7 @@ For getting the list of categories:
 Returns:
 ``` JavaScript
 {
-    "Categories: [{ "CategoryId" : String, "Name" : String }]
+    "Categories": [{ "CategoryId" : String, "Name" : String }]
 }
 ```
 
