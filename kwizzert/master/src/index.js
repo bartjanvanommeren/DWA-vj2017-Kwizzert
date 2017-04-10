@@ -3,26 +3,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 // Components
-import Header from './components/header';
-import Content from './components/createGame';
+import App from './components/app';
 
 // Redux stuff
 import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
 import GameReducer from './reducers/reducer-game';
 
 const allReducers = combineReducers({
   game: GameReducer // For now this reducer holds everything considered usefull for all clients
 });
 
-const store = createStore(allReducers);
+const myStore = createStore(allReducers);
 
-
-// TODO make app component that glues tgt the page and maybe eliminates routing
-// https://youtu.be/ZRE6e_0eQeQ?t=1m39s
+// Don't touch, use components/app.js
 ReactDOM.render(
-  <div className="container">
-    <Header />
-    <Content />
-  </div>,
+  <Provider store={myStore}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 );
