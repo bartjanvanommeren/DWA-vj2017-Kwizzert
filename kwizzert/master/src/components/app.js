@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
-
-// Components
-import Header from './header';
+import { Router, Route, browserHistory } from 'react-router';
+import PageController from './pageController';
 import CreateGame from './createGame';
-import GameSetup from './gameSetup';
 
 class App extends Component {
     render() {
         return (
-            <div className="container">
-                <Header />
-                <CreateGame />
-                <GameSetup />
-            </div>
+            <Router history={browserHistory}>
+                <div className="container">
+                    <Route path="/" component={CreateGame} />
+                    <Route path="/gameID" component={PageController} />
+                </div>
+            </Router>
         );
     }
 }

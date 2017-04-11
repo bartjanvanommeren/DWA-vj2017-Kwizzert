@@ -2,19 +2,36 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-class CreateGame extends Component {
+class GameSetup extends Component {
+    constructor(props) {
+    super(props);
+    this.state = {}
+
+    this.nextState = this.nextState.bind(this);
+  }
+
     teamsJoining() {
         return this.props.game.teams.map((team, i) => {
             return (
-                <tr
-                    className={team.accepted}
-                    key={i}
-                    onClick={() => this.props.acceptTeam(i)}
-                >
+                <tr key={i}>
                     <td>{team.name}</td>
+                    <td>
+                        <input
+                            type="checkbox"
+                            value={team.accepted}
+                            onClick={() => this.props.acceptTeam(i)}
+                        />
+                    </td>
                 </tr>
             );
         });
+    }
+
+    nextState() {
+        this.props.nextState();
+        // Expected Behavior
+        // this.props.game.gameState ++;
+        // console.log(this.props.game.gameState);
     }
 
     render() {
@@ -27,23 +44,18 @@ class CreateGame extends Component {
                         {this.teamsJoining()}
                     </tbody>
                 </table>
-                {this.props.game.test}
                 <br />
-                <button className="btn btn-default" onClick="">Next</button>
+                <button className="btn btn-default" onClick={this.nextState}>Next</button>
             </div>
         );
     }
 }
 
 // Action creator
-function acceptTeam(i) {
-    return { // Action object
-        type: "TOGGLE_TEAM_ACCEPTED",
-        payload: i
+function nextState() {
+    return {
+        type: "NEXT_STATE"
     }
-    // expected behavior
-    // game.teams[id].accepted = !game.teams[id].accepted;
-    // also needs to contact server
 }
 
 // make component aware of game store
@@ -55,9 +67,8 @@ function mapStateToProps(state) {
 
 // make component aware of actions
 function matchDispatchToProps(dispatch) {
-    return bindActionCreators({ acceptTeam: acceptTeam }, dispatch)
+    return bindActionCreators({ nextState: nextState }, dispatch)
 }
 
 // make component aware of game object and export
-export default connect(mapStateToProps, matchDispatchToProps)(CreateGame);
-//export default CreateGame;
+export default connect(mapStateToProps, matchDispatchToProps)(GameSetup);

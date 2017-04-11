@@ -36,11 +36,3 @@ tr {
   width: 600px;
   padding-top: 50px;
 }
-
-.false {
-  background-color: red;
-}
-
-.true {
-  background-color: green;
-}

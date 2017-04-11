@@ -1,13 +1,14 @@
+import ReactDOM from 'react-dom';
+
 export default function (state, action) {
     var game = state || {
-        test: "nothing changed",
         name: "Example Game",
         password: "JDGRTY",
         teams: [
             {
                 id: "1",
                 name: "team1",
-                accepted: true,
+                accepted: false,
                 score: 0.0,
                 correct: 0
             },
@@ -48,7 +49,7 @@ export default function (state, action) {
             },],
         roundNr: 0,
         questionNr: 0,
-        Categorys: [
+        categorys: [
             {
                 name: "ExampleCategory1",
                 questions: [
@@ -103,19 +104,52 @@ export default function (state, action) {
         selectedCategory: "Category1",
         selectedQuestion: "Example question",
         selectedQuestionAnswer: "Example answer",
-        gameState: 0, // 0=not-created 1=pre-game 2=pre-round 3=pre-question 4=question 5=post-question
+        gameState: 1, // 1=pre-round 2=pre-question 3=question 4=post-question
     }
 
     function toggleTeamAccepted(i) {
-        game.test = "something changed";
         game.teams[i].accepted = !game.teams[i].accepted;
         console.log(game.teams[i].accepted)
-        console.log(game.test)
+    }
+
+    function changeGameName(name) {
+        game.name = name;
+    }
+
+    function nextState(){
+        // 1=pre-game 2=pre-round 3=pre-question 4=question 5=post-question
+        game.gameState ++;
+        switch (game.gameState) {
+            case 2:
+                game.roundNr ++;
+                break;
+            case 3:
+                game.questionNr ++;
+                break;
+            case 6:
+                if (game.questionNr >= 12){
+                    game.gameState = 1;
+                    game.questionNr = 0;
+                } else {
+                    game.gameState = 2;
+                }
+                break;
+            default:
+        }
+        console.log("state: " + game.gameState);
+        console.log("round: " + game.roundNr);
+        console.log("question: " + game.questionNr);
     }
 
     switch (action.type) {
         case "TOGGLE_TEAM_ACCEPTED":
             toggleTeamAccepted(action.payload);
+            return game
+        case "CHANGE_GAME_NAME":
+            changeGameName(action.payload);
+            return game
+        case "NEXT_STATE":
+            nextState();
             return game
         default:
             return game

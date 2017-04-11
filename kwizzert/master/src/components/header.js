@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './kwizzertLogo.png';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 class Header extends Component {
     render() {
@@ -18,7 +19,9 @@ class Header extends Component {
                     <h4>Question {this.props.game.questionNr} of 3</h4>
                 </div>
                 <div className="col-md-4">
-                    <button className="pull-right btn btn-default" onClick="">End Game</button>
+                    <button className="pull-right btn btn-default"> 
+                        <Link to="/">End Game</Link> 
+                    </button>
                 </div>
             </div>
         );
